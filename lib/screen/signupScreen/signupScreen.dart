@@ -136,7 +136,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         bool insignup = await FireHelper.fireHelper
                             .signupUser(txtemail.text, txtpassword.text);
                         if (insignup) {
-                          Get.offNamed('home');
+                         Get.back();
+                         Get.snackbar(
+                          "Login Success",
+                           "Your UserName Is $txtemail", colorText: Colors.white,
+                           backgroundColor: Colors.black54,
+                         );
                         } else {
                           Get.snackbar(
                             "Login Failed",

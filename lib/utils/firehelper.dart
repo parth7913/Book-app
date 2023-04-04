@@ -112,12 +112,14 @@ class FireHelper {
 // read getBook
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getbook() {
+    UserData();
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     return firestore.collection("Book").doc(Uid).collection("Bk").snapshots();
   }
 
 // Delet Book
   void delet(String id) {
+    UserData();
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore.collection("Book").doc(Uid).collection("Bk").doc(id).delete();
   }
@@ -125,6 +127,7 @@ class FireHelper {
   // Update Book Name
   void Update(String id, String name) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
+    UserData();
     firestore
         .collection("Book")
         .doc(Uid)
