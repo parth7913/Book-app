@@ -1,13 +1,14 @@
+import 'package:bookapp/screen/Detail/View/Detail.dart';
+import 'package:bookapp/screen/Home/view/home.dart';
+import 'package:bookapp/screen/Login/login_screen.dart';
+import 'package:bookapp/screen/signupScreen/signupScreen.dart';
+import 'package:bookapp/screen/splesh/Splesh_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:login_firebase_01/screen/Detail/View/Detail.dart';
-import 'package:login_firebase_01/screen/Home/view/home.dart';
-import 'package:login_firebase_01/screen/Login/login_screen.dart';
-import 'package:login_firebase_01/screen/signupScreen/signupScreen.dart';
-import 'package:login_firebase_01/screen/splesh/Splesh_Screen.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,13 +16,14 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
     GetMaterialApp(
+      theme: ThemeData(useMaterial3: true),
       debugShowCheckedModeBanner: false,
       routes: {
-        '/': (p0) => Splesah_Screen(),
-        'signin': (p0) => Login_Screen(),
-        'home': (p0) => Home_Screen(),
+        '/': (p0) => HoldScreen(),
+        'signin': (p0) => signinscreen(),
+        'home': (p0) => HomeScreen(),
         'signup': (p0) => SignUpScreen(),
-        'Detail': (p0) => Detail_Page(),
+        'Detail': (p0) => AddPage(),
       },
     ),
   );

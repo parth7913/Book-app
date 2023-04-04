@@ -1,16 +1,17 @@
+import 'package:bookapp/utils/firehelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_firebase_01/utils/firehelper.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class Login_Screen extends StatefulWidget {
-  const Login_Screen({Key? key}) : super(key: key);
+class signinscreen extends StatefulWidget {
+  const signinscreen({Key? key}) : super(key: key);
 
   @override
-  State<Login_Screen> createState() => _Login_ScreenState();
+  State<signinscreen> createState() => _signinscreenState();
 }
 
-class _Login_ScreenState extends State<Login_Screen> {
+class _signinscreenState extends State<signinscreen> {
   TextEditingController txtemail = TextEditingController();
   TextEditingController txtpassword = TextEditingController();
 
@@ -20,12 +21,18 @@ class _Login_ScreenState extends State<Login_Screen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Stack(
-            alignment: Alignment.topCenter,
+            alignment: Alignment.center,
             children: [
               Container(
                 height: MediaQuery.of(context).size.height - 30,
                 width: MediaQuery.of(context).size.width,
-                child: Image.asset("aseets/images/back.png", fit: BoxFit.fill),
+                child: Image.asset("assets/images/backround3.jpg",
+                    fit: BoxFit.fill),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height - 30,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black26,
               ),
               Padding(
                 padding: const EdgeInsets.all(25),
@@ -33,47 +40,63 @@ class _Login_ScreenState extends State<Login_Screen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "Welcome",
-                      style: TextStyle(
-                          color: Colors.white54,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35),
+                      "Welcome!",
+                      style:
+                          GoogleFonts.kalam(color: Colors.white, fontSize: 50),
                     ),
                     SizedBox(
                       height: 20,
                     ),
                     TextField(
+                      cursorColor: Colors.white,
+                      style: GoogleFonts.kalam(color: Colors.white),
                       controller: txtemail,
                       decoration: InputDecoration(
-                          label: Text("Email"), prefixIcon: Icon(Icons.email,color:Colors.black54,),
-                          labelStyle: TextStyle(color: Colors.black),
+                          label: Text(
+                            "Email Address",
+                            style: GoogleFonts.kalam(),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.email,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
                             borderSide:
-                                BorderSide(width: 1, color: Colors.white54),
+                                BorderSide(width: 1, color: Colors.white),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(20),
+                              Radius.circular(35),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white54))),
+                              borderRadius: BorderRadius.circular(35),
+                              borderSide: BorderSide(color: Colors.white))),
                     ),
                     SizedBox(
                       height: 20,
                     ),
-                    TextField(
+                    TextField( cursorColor: Colors.white,
+                      style: GoogleFonts.kalam(color: Colors.white),
                       controller: txtpassword,
                       decoration: InputDecoration(
-                          label: Text("password"),prefixIcon: Icon(Icons.lock),
-                          labelStyle: TextStyle(color: Colors.black),
+                          label: Text(
+                            "Password",
+                            style: GoogleFonts.kalam(),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white,
+                          ),
+                          labelStyle: TextStyle(color: Colors.white),
                           enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 1, color: Colors.white54),
+                            borderSide: BorderSide(color: Colors.white),
                             borderRadius: BorderRadius.all(
-                              Radius.circular(5),
+                              Radius.circular(35),
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.white54))),
+                              borderRadius: BorderRadius.circular(35),
+                              borderSide: BorderSide(color: Colors.white))),
                     ),
                     SizedBox(
                       height: 20,
@@ -85,15 +108,20 @@ class _Login_ScreenState extends State<Login_Screen> {
                         if (insignin) {
                           Get.offNamed('home');
                         } else {
-                          Get.snackbar("Not Login", "");
+                          Get.snackbar(
+                            "Please Enter Email Or Password",
+                            "",
+                            colorText: Colors.white,
+                            backgroundColor: Colors.black54,
+                          );
                         }
                       },
                       child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                        "Sign In",
+                        style: GoogleFonts.kalam(
+                          color: Colors.black,
+                          fontSize: 20,
+                        ),
                       ),
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(270, 50),
@@ -104,7 +132,7 @@ class _Login_ScreenState extends State<Login_Screen> {
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         InkWell(
                           onTap: () async {
@@ -113,67 +141,51 @@ class _Login_ScreenState extends State<Login_Screen> {
                             if (insign) {
                               Get.offNamed('home');
                             } else {
-                              Get.snackbar("login in unsucseefully", "");
+                              Get.snackbar("Login In Unsucseefully", "");
                             }
                           },
                           child: Container(
                             height: 50,
                             width: 120,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
                             margin: EdgeInsets.all(10),
                             alignment: Alignment.center,
                             child: SizedBox(
-                              height: 30,
-                              width: 50,
+                              height: 45,
+                              width: 45,
                               child: Image.asset(
-                                "aseets/images/chrome.png",
+                                "assets/images/Goog.png",
                               ),
                             ),
                           ),
                         ),
-                        InkWell(
-                          onTap: () async {
-                           bool isfc =await FireHelper.fireHelper.signInWithFacebook();
-                           if(isfc)
-                             {
-                               Get.offNamed('home');
-                             }
-                           else
-                             {
-                               Get.snackbar("Login In unsucseefully","");
-                             }
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 120,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
-                            margin: EdgeInsets.all(10),
-                            alignment: Alignment.center,
-                            child: SizedBox(
-                              height: 30,
-                              width: 50,
-                              child: Image.asset(
-                                "aseets/images/facebook .png",
-                              ),
-                            ),
-                          ),
-                        ),
+                        IconButton(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.facebook,
+                              color: Colors.blue,
+                              size: 50,
+                            ))
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text("Don't have Account?"),
+                        Text(
+                          "Don't have Account?",
+                          style: GoogleFonts.kalam(
+                              color: Colors.white, fontSize: 18),
+                        ),
                         TextButton(
-                            onPressed: () {
-                              Get.toNamed('signup');
-                            },
-                            child: Text("Sign up")),
+                          onPressed: () {
+                            Get.toNamed('signup');
+                          },
+                          child: Text(
+                            "Sign up",
+                            style: GoogleFonts.kalam(
+                                color: Colors.blue, fontSize: 18),
+                          ),
+                        ),
                       ],
                     ),
                   ],

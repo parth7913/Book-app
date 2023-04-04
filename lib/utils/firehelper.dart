@@ -1,11 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class FireHelper {
   FireHelper._();
-
 
   static FireHelper fireHelper = FireHelper._();
   String? Uid;
@@ -90,37 +88,17 @@ class FireHelper {
     return isLogin;
   }
 
-  //------------------ facebook Firebase------------//
-
-  Future<bool> signInWithFacebook() async {
-    bool insignfc = false;
-    // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
-
-    // Create a credential from the access token
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.token);
-
-    // Once signed in, return the UserCredential
-    await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-    if (insignfc) {
-      insignfc = true;
-    } else
-      (insignfc) {
-        insignfc = false;
-      };
-    return insignfc;
-  }
 
   //----------------------- book ------------------------------//
 
-  Future<bool> addbook(String name, String other, String image,String rating, String Pyear) async {
+  Future<bool> addbook(String name, String other, String image, String rating,
+      String Pyear) async {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     bool isbook = false;
     await firebaseFirestore.collection("Book").doc(Uid).collection("Bk").add({
-      "name":name,
+      "name": name,
       "Other": other,
-      "image":image,
+      "image": image,
       "Rating ": rating,
       "Publish_Year": Pyear
     }).then((value) {
@@ -131,30 +109,34 @@ class FireHelper {
     return isbook;
   }
 
-
 // read getBook
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getbook() {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     return firestore.collection("Book").doc(Uid).collection("Bk").snapshots();
   }
+
 // Delet Book
-  void delet(String id)
-  {
+  void delet(String id) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     firestore.collection("Book").doc(Uid).collection("Bk").doc(id).delete();
   }
+
   // Update Book Name
-  void  Update(String id,String name) {
+  void Update(String id, String name) {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    firestore.collection("Book").doc(Uid).collection("Bk").doc(id).update({"name": name});
+    firestore
+        .collection("Book")
+        .doc(Uid)
+        .collection("Bk")
+        .doc(id)
+        .update({"name": name});
   }
 
   // Uri Id
-void UserData()
-{
- FirebaseAuth firebaseAuth = FirebaseAuth.instance;
- User? user=firebaseAuth.currentUser;
-   Uid = user!.uid;
-}
+  void UserData() {
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    User? user = firebaseAuth.currentUser;
+    Uid = user!.uid;
+  }
 }

@@ -1,19 +1,20 @@
+import 'package:bookapp/screen/splesh/Controller.dart';
+import 'package:bookapp/utils/firehelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:login_firebase_01/screen/splesh/Controller.dart';
-import 'package:login_firebase_01/utils/firehelper.dart';
 
-class Detail_Page extends StatefulWidget {
-  const Detail_Page({Key? key}) : super(key: key);
+
+class AddPage extends StatefulWidget {
+  const AddPage({Key? key}) : super(key: key);
 
   @override
-  State<Detail_Page> createState() => _Detail_PageState();
+  State<AddPage> createState() => _AddPageState();
 }
 
-class _Detail_PageState extends State<Detail_Page> {
+class _AddPageState extends State<AddPage> {
   GlobalKey<FormState> errorkey = GlobalKey<FormState>();
   HomeController homeController = Get.put(HomeController());
   TextEditingController txtname = TextEditingController();

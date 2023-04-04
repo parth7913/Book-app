@@ -1,19 +1,20 @@
+import 'package:bookapp/screen/Home/modal/homemodal.dart';
+import 'package:bookapp/utils/firehelper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:focused_menu/focused_menu.dart';
-import 'package:focused_menu/modals.dart';
-import 'package:get/get.dart';
-import 'package:login_firebase_01/screen/Home/modal/homemodal.dart';
-import 'package:login_firebase_01/utils/firehelper.dart';
+import 'package:focused_menu_custom/focused_menu.dart';
+import 'package:focused_menu_custom/modals.dart';
 
-class Home_Screen extends StatefulWidget {
-  const Home_Screen({Key? key}) : super(key: key);
+import 'package:get/get.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Home_Screen> createState() => _Home_ScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _Home_ScreenState extends State<Home_Screen> {
+class _HomeScreenState extends State<HomeScreen> {
   GlobalKey<FormState> globalKey = GlobalKey<FormState>();
   TextEditingController txtpname = TextEditingController();
   TextEditingController txtpprice = TextEditingController();
@@ -99,12 +100,12 @@ class _Home_ScreenState extends State<Home_Screen> {
                                             onPressed: () {
                                               if (globalKey.currentState!
                                                   .validate()) {
-                                                FireHelper
-                                                    .fireHelper
-                                                    .Update(l1[index].id!,
-                                                        txtpname.text);
-                                                  Get.back();}
-                                              },
+                                                FireHelper.fireHelper.Update(
+                                                    l1[index].id!,
+                                                    txtpname.text);
+                                                Get.back();
+                                              }
+                                            },
                                             child: Text("Finish"),
                                           )
                                         ],

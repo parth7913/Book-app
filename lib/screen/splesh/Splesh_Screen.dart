@@ -1,16 +1,17 @@
+import 'package:bookapp/screen/splesh/Controller.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:login_firebase_01/screen/splesh/Controller.dart';
 
-class Splesah_Screen extends StatefulWidget {
-  const Splesah_Screen({Key? key}) : super(key: key);
+class HoldScreen extends StatefulWidget {
+  const HoldScreen({Key? key}) : super(key: key);
 
   @override
-  State<Splesah_Screen> createState() => _Splesah_ScreenState();
+  State<HoldScreen> createState() => _HoldScreenState();
 }
 
-class _Splesah_ScreenState extends State<Splesah_Screen> {
+class _HoldScreenState extends State<HoldScreen> {
   HomeController sp = Get.put(HomeController());
 
   @override
@@ -19,46 +20,44 @@ class _Splesah_ScreenState extends State<Splesah_Screen> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Stack(alignment: Alignment.topCenter, children: [
-            Container(
-              height: MediaQuery.of(context).size.height - 30,
-              width: MediaQuery.of(context).size.width,
-              child: Image.asset("aseets/images/back.png", fit: BoxFit.fill),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(height: 400,width: 400,
-                  child: ListView(
-                    children: [
-                      Lottie.asset("aseets/json/01.json"),
-                    ],
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Login"),
-                  style: ElevatedButton.styleFrom(
-                      fixedSize: Size(270, 50), backgroundColor: Colors.white54),
-                ),
-                SizedBox(height: 25,),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Text("Sign Up"),
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(Size(250, 50)),
-                    backgroundColor: MaterialStateProperty.all(Colors.white12),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        side: BorderSide(color: Colors.white),
-                      ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height - 30,
+                width: MediaQuery.of(context).size.width,
+                child: Image.asset("assets/images/backround3.jpg",
+                    fit: BoxFit.fill),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height - 30,
+                width: MediaQuery.of(context).size.width,
+                color: Colors.black26,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 300,
+                    width: 300,
+                    child: ListView(
+                      children: [
+                        Lottie.asset("assets/lottie/booklottie.json"),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-          ]),
+                  Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Text(
+                      "Make Your Book",
+                      style: GoogleFonts.kalam(color: Colors.white, fontSize: 35),
+                    ),
+                  ),
+                  CircularProgressIndicator(color: Colors.white,),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
